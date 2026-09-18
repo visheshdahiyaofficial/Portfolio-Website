@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-raised: #F2F1EA;
+    --text: #1A1A18;
+    --text-soft: #6B6B62;
+    --accent: #2B4C7E;
+    --line: #DEDDD2;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161614;
+      --bg-raised: #1E1E1B;
+      --text: #EDECE6;
+      --text-soft: #8F8E85;
+      --accent: #7FA3D6;
+      --line: #33322C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161614;
+    --bg-raised: #1E1E1B;
+    --text: #EDECE6;
+    --text-soft: #8F8E85;
+    --accent: #7FA3D6;
+    --line: #33322C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover, a:focus-visible { border-bottom-color: currentColor; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 40px 0 24px;
+  }
+
+  .wordmark {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+  }
+
+  nav.top-nav { display: flex; gap: 24px; }
+  nav.top-nav a { font-size: 0.9rem; color: var(--text-soft); border: none; }
+  nav.top-nav a:hover { color: var(--text); }
+
+  .hero {
+    padding: 64px 0 88px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    max-width: 15ch;
+  }
+
+  .hero p.role {
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+
+  .hero .links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .hero .links a {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+  .hero .links a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  section h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 40px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skills-grid .skill-row:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--line); }
+  .skills-grid .skill-row:nth-child(even) { padding-left: 24px; }
+
+  .skill-row .tag {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .skill-row .desc {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+  }
+
+  /* Projects */
+  .project {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .project:last-child { border-bottom: 1px solid var(--line); }
+
+  .project h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+  }
+  .project p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.94rem;
+    max-width: 56ch;
+  }
+  .project .stack {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* Contact */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contact-list a {
+    font-size: 1.05rem;
+  }
+
+  footer {
+    padding: 40px 0 60px;
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    header.top { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skills-grid .skill-row:nth-child(odd) { border-right: none; padding-right: 0; }
+    .skills-grid .skill-row:nth-child(even) { padding-left: 0; }
+    .project { grid-template-columns: 1fr; }
+    .project .stack { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 { animation: rise 0.6s ease-out; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger.is-visible {
+      transition-delay: calc(var(--i, 0) * 70ms);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="wordmark">/home/vishesh</div>
+    <nav class="top-nav">
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Vishesh</h1>
+    <p class="role">I build software across the stack — from low-level C and C++ to Python and Java backends, SQL-driven data layers, and the websites that sit on top of it all.</p>
+  </section>
+
+  <section id="skills">
+    <h2 class="reveal">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-row reveal reveal-stagger" style="--i:0">
+        <div class="tag">python</div>
+        <div class="desc">Scripting, automation, and backend services.</div>
+      </div>
+      <div class="skill-row reveal reveal-stagger" style="--i:1">
+        <div class="tag">c</div>
+        <div class="desc">Systems-level programming, memory management, performance-critical code.</div>
+      </div>
+      <div class="skill-row reveal reveal-stagger" style="--i:2">
+        <div class="tag">c++</div>
+        <div class="desc">Object-oriented systems, data structures, algorithm-heavy applications.</div>
+      </div>
+      <div class="skill-row reveal reveal-stagger" style="--i:3">
+        <div class="tag">java</div>
+        <div class="desc">Application development and object-oriented design.</div>
+      </div>
+      <div class="skill-row reveal reveal-stagger" style="--i:4">
+        <div class="tag">sql</div>
+        <div class="desc">Relational database design, queries, and optimization.</div>
+      </div>
+      <div class="skill-row reveal reveal-stagger" style="--i:5">
+        <div class="tag">web</div>
+        <div class="desc">HTML, CSS, and JavaScript — building and shipping full websites.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="reveal">Selected projects</h2>
+
+    <div class="project reveal reveal-stagger" style="--i:0">
+      <div>
+        <h3>Project One</h3>
+        <p>One or two lines on what it does and the problem it solves. Link it if it's live.</p>
+      </div>
+      <div class="stack">python · sql</div>
+    </div>
+
+    <div class="project reveal reveal-stagger" style="--i:1">
+      <div>
+        <h3>Project Two</h3>
+        <p>Same here — keep it concrete: what you built, and what it's for.</p>
+      </div>
+      <div class="stack">c++</div>
+    </div>
+
+    <div class="project reveal reveal-stagger" style="--i:2">
+      <div>
+        <h3>Project Three</h3>
+        <p>A short line about a website or app you shipped, and who it's for.</p>
+      </div>
+      <div class="stack">html · css · js</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="reveal">Get in touch</h2>
+    <div class="contact-list">
+      <a class="reveal reveal-stagger" style="--i:0" href="mailto:vishesh.dahiya.official@gmail.com">vishesh.dahiya.official@gmail.com</a>
+      <a class="reveal reveal-stagger" style="--i:1" href="https://github.com/visheshdahiyaofficial" target="_blank" rel="noopener">GitHub</a>
+      <a class="reveal reveal-stagger" style="--i:2" href="https://www.linkedin.com/in/vishesh-vishesh-9773273b4/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>© 2026 Vishesh Dahiya</footer>
+</div>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
